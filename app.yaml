@@ -1,0 +1,1 @@
+command: ["python", "ui/app.py"]
