@@ -1,6 +1,6 @@
 # pharma-rag-mcp
 
-A fully local, end-to-end **Retrieval-Augmented Generation (RAG)** system for pharmaceutical sales intelligence — built with LangChain, ChromaDB, Ollama, and the Model Context Protocol (MCP).
+A **Retrieval-Augmented Generation (RAG)** system for pharmaceutical sales intelligence — built with LangChain, ChromaDB, OpenAI, and the Model Context Protocol (MCP).
 
 The system ingests drug labels, clinical trial documents, and sales call notes into a local vector database, exposes them as MCP tools, and answers natural-language questions through a LangGraph ReAct agent backed by a locally-running LLM.
 
@@ -12,7 +12,7 @@ The system ingests drug labels, clinical trial documents, and sales call notes i
 data/sources/          ← raw .txt files (drug labels, trials, call notes)
       │
       ▼
-data/ingest.py         ← loads, splits into chunks, embeds with all-MiniLM-L6-v2
+data/ingest.py         ← loads, splits into chunks, embeds with OpenAI
       │
       ▼
 chroma_db/             ← persisted ChromaDB collections (384-dim vectors)
@@ -24,7 +24,7 @@ chroma_db/             ← persisted ChromaDB collections (384-dim vectors)
 mcp_server/server.py   ← MCP server over stdio — exposes 4 retrieval tools
       │   (MCP JSON-RPC)
       ▼
-agent/agent.py         ← LangGraph ReAct agent (ChatOllama + MCP tools)
+agent/agent.py         ← LangGraph ReAct agent (ChatOpenAI + MCP tools)
       │
       ▼
 ui/app.py              ← Gradio chat interface (browser)
@@ -34,7 +34,7 @@ ui/app.py              ← Gradio chat interface (browser)
 
 | Module | Purpose |
 |---|---|
-| `rag/embeddings.py` | HuggingFace embedding model wrapper (`all-MiniLM-L6-v2`) |
+| `rag/embeddings.py` | OpenAI embedding model wrapper (`text-embedding-3-small`) |
 | `rag/vectorstore.py` | ChromaDB collection builder / loader |
 | `eval/evaluate.py` | Retrieval quality evaluation (Hit Rate, MRR, Context Precision) |
 
@@ -57,10 +57,7 @@ ui/app.py              ← Gradio chat interface (browser)
 ## Prerequisites
 
 - **Python 3.13+**
-- **[Ollama](https://ollama.ai)** running locally with a model pulled:
-  ```bash
-  ollama pull llama3.2
-  ```
+- An [OpenAI](https://platform.openai.com) API key.
 - A Python virtual environment with dependencies installed (see Setup).
 
 ---
@@ -82,9 +79,9 @@ source .venv/bin/activate
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Configure environment (optional — defaults work out of the box)
+# 4. Configure environment
 cp .env.example .env
-# Edit .env to set OLLAMA_MODEL and OLLAMA_BASE_URL if needed
+# Edit .env and replace the OpenAI API key placeholder.
 
 # 5. Build the vector database (only needed once)
 python -m data.run_ingest
@@ -94,7 +91,8 @@ python -m data.run_ingest
 
 ## Running the System
 
-Each layer can be used independently. Start Ollama before using the agent or UI.
+Each layer can be used independently. Internet access and a valid OpenAI API key
+are required when using the agent or UI.
 
 ### Agent (CLI)
 
@@ -171,15 +169,15 @@ Prints Hit Rate, MRR, and Context Precision per collection and in aggregate.
 
 | File | Purpose |
 |---|---|
-| `.env` | Ollama model and base URL (copy from `.env.example`) |
+| `.env` | OpenAI model and API key (copy from `.env.example`) |
 | `config.yaml` | Agent behaviour (conversation history window) |
 
 ### `.env`
 
 | Variable | Default | Description |
 |---|---|---|
-| `OLLAMA_MODEL` | `llama3.2` | Ollama model name (must be pulled first) |
-| `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama HTTP daemon URL |
+| `OPENAI_MODEL` | `gpt-4o-mini` | OpenAI chat model |
+| `OPENAI_API_KEY` | none | OpenAI API key |
 
 ### `config.yaml`
 
@@ -203,7 +201,7 @@ pharma-rag-mcp/
 │       ├── clinical_trials/# 11 × clinical trial .txt files
 │       └── call_notes/     # 11 × sales call note .txt files
 ├── rag/
-│   ├── embeddings.py       # EmbeddingModel (all-MiniLM-L6-v2)
+│   ├── embeddings.py       # EmbeddingModel (text-embedding-3-small)
 │   └── vectorstore.py      # VectorStoreManager (ChromaDB)
 ├── mcp_server/
 │   ├── server.py           # MCP server entrypoint (stdio)
@@ -226,7 +224,7 @@ pharma-rag-mcp/
 
 ## Key Design Decisions
 
-**Local-first** — no cloud APIs, no API keys. Embeddings via HuggingFace, vector storage via ChromaDB, generation via Ollama.
+**OpenAI generation and embeddings** — model responses and vector embeddings use the OpenAI API, with vectors stored locally in ChromaDB.
 
 **MCP as the retrieval layer** — the MCP server cleanly separates retrieval from generation. Any MCP-compatible client can call the search tools.
 

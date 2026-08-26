@@ -288,6 +288,53 @@ def evaluate_collection(
     return agg
 
 
+_CACHED_METRICS: dict[str, dict] | None = None
+
+
+def get_all_metrics(k: int = 3) -> dict[str, dict]:
+    """Return cached aggregate evaluation metrics for every collection."""
+    global _CACHED_METRICS
+    if _CACHED_METRICS is not None:
+        return _CACHED_METRICS
+
+    stores = IngestionPipeline().run()
+    _CACHED_METRICS = {}
+    for collection_name, questions in EVAL_SETS.items():
+        store = stores[collection_name]
+        hit_rates, mrrs, precisions = [], [], []
+        for item in questions:
+            results = store.similarity_search(item["question"], k=k)
+            hit_rates.append(_hit_rate(results, item["keywords"]))
+            mrrs.append(_mrr(results, item["keywords"]))
+            precisions.append(_context_precision(results, item["keywords"]))
+
+        count = len(questions)
+        _CACHED_METRICS[collection_name] = {
+            "hit_rate": round(sum(hit_rates) / count, 4),
+            "mrr": round(sum(mrrs) / count, 4),
+            "context_precision": round(sum(precisions) / count, 4),
+        }
+
+    collection_metrics = list(_CACHED_METRICS.values())
+    collection_count = len(collection_metrics)
+    _CACHED_METRICS["overall"] = {
+        "hit_rate": round(
+            sum(metrics["hit_rate"] for metrics in collection_metrics) / collection_count,
+            4,
+        ),
+        "mrr": round(
+            sum(metrics["mrr"] for metrics in collection_metrics) / collection_count,
+            4,
+        ),
+        "context_precision": round(
+            sum(metrics["context_precision"] for metrics in collection_metrics) / collection_count,
+            4,
+        ),
+    }
+
+    return _CACHED_METRICS
+
+
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 def main() -> None:

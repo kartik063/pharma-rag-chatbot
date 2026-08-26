@@ -2,7 +2,7 @@
 Pharma RAG CLI agent.
 
 Connects to the pharma-rag MCP server via stdio transport, loads its four
-retrieval tools, and runs a LangGraph ReAct loop backed by a local Ollama LLM.
+ retrieval tools, and runs a LangGraph ReAct loop backed by an OpenAI LLM.
 
 Run from project root (venv active):
     python -m agent.agent
@@ -11,6 +11,7 @@ Run from project root (venv active):
 import os
 import sys
 import json
+import re
 import yaml
 import asyncio
 import textwrap
@@ -18,10 +19,11 @@ from datetime import datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from langchain.agents import create_agent as create_react_agent
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 from langchain_mcp_adapters.client import MultiServerMCPClient
+from eval.evaluate import get_all_metrics
 
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -39,8 +41,8 @@ except (OSError, yaml.YAMLError, ValueError):
 
 # --- Environment -------------------------------------------------------------
 
-OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3.2")
-OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "").strip()
 _MCP_CMD = [sys.executable, "-m", "mcp_server.server"]
 
 # --- Memory paths ------------------------------------------------------------
@@ -102,15 +104,15 @@ class PharmaAgent:
     runs a LangGraph ReAct loop to retrieve and synthesise an answer.
     """
 
-    def __init__(self, model: str = OLLAMA_MODEL, base_url: str = OLLAMA_BASE_URL) -> None:
+    def __init__(self, model: str = OPENAI_MODEL, api_key: str = OPENAI_API_KEY) -> None:
         self.model = model
-        self.base_url = base_url
+        self.api_key = api_key
 
     async def ask(
         self,
         question: str,
         history: list | None = None,
-    ) -> tuple[str, list[str], str]:
+    ) -> tuple[str, list[str], str, dict]:
         """
         Run one ReAct loop for the given question.
 
@@ -120,10 +122,18 @@ class PharmaAgent:
                       (last N turns) to give the LLM multi-turn context.
 
         Returns:
-            Tuple of (answer, tools_called, source_mode) where source_mode is
-            one of "kb_only", "amalgamation", or "general_only".
+            Tuple of (answer, tools_called, source_mode, metrics).
         """
-        llm = ChatOllama(model=self.model, base_url=self.base_url)
+        if not self.api_key or self.api_key == "replace_with_your_openai_api_key":
+            raise RuntimeError(
+                "OpenAI API key is missing. Set OPENAI_API_KEY in the project .env file."
+            )
+
+        llm = ChatOpenAI(
+            model=self.model,
+            api_key=self.api_key,
+            temperature=0.2,
+        )
 
         client = MultiServerMCPClient({
             "pharma-rag": {
@@ -159,7 +169,31 @@ class PharmaAgent:
         else:
             source_mode = "kb_only"
 
-        return answer, tools_called, source_mode
+        tool_messages = [msg for msg in result["messages"] if isinstance(msg, ToolMessage)]
+        retrieved_chunks = sum(
+            len(re.findall(r"\[Result \d+\]", str(msg.content)))
+            for msg in tool_messages
+        )
+        retrieved_sources = sorted(set(
+            source
+            for msg in tool_messages
+            for source in re.findall(r"Source:\s*([^\n]+)", str(msg.content))
+        ))
+        try:
+            evaluation_metrics = get_all_metrics()
+        except Exception as exc:
+            evaluation_metrics = {"error": str(exc)}
+
+        metrics = {
+            "retrieval": {
+                "status": "success" if tool_messages else "no tool results",
+                "tool_calls": len(tool_messages),
+                "chunks": retrieved_chunks,
+                "sources": retrieved_sources,
+            },
+            "evaluation": evaluation_metrics,
+        }
+        return answer, tools_called, source_mode, metrics
 
 
 # --- CLI helpers -------------------------------------------------------------
@@ -179,6 +213,27 @@ _MODE_LABEL = {
 def _hr(char: str = "-") -> str:
     """Return a horizontal rule of _W characters."""
     return char * _W
+
+
+def _print_metrics(metrics: dict) -> None:
+    """Print retrieval and evaluation metrics for one answer."""
+    retrieval = metrics.get("retrieval", {})
+    print("  Metrics:")
+    print(f"    Retrieval status : {retrieval.get('status', 'unknown')}")
+    print(f"    Tool calls       : {retrieval.get('tool_calls', 0)}")
+    print(f"    Retrieved chunks : {retrieval.get('chunks', 0)}")
+    sources = retrieval.get("sources", [])
+    print(f"    Sources          : {', '.join(sources) if sources else 'none'}")
+    evaluation = metrics.get("evaluation", {})
+    if "error" in evaluation:
+        print(f"    Evaluation       : unavailable ({evaluation['error']})")
+        return
+    for collection, values in evaluation.items():
+        print(
+            f"    {collection:<17}: Hit Rate={values['hit_rate']:.4f}, "
+            f"MRR={values['mrr']:.4f}, "
+            f"Context Precision={values['context_precision']:.4f}"
+        )
 
 
 def _load_long_term() -> list[dict]:
@@ -242,8 +297,8 @@ async def _run_cli() -> None:
     print(_hr("="))
     print("  PHARMA RAG AGENT")
     print(_hr("="))
-    print(f"  Model      : {OLLAMA_MODEL}")
-    print(f"  Ollama URL : {OLLAMA_BASE_URL}")
+    print(f"  Model      : {OPENAI_MODEL}")
+    print("  Provider   : OpenAI API")
     print(f"  Tools      : search_drug_info, search_competitor_intel,")
     print(f"               search_pitch_content, search_all")
     print(_hr("-"))
@@ -291,17 +346,19 @@ async def _run_cli() -> None:
 
         try:
             windowed = conv_history[-(HISTORY_WINDOW * 2):]
-            answer, tools_called, source_mode = await agent.ask(question, history=windowed)
+            answer, tools_called, source_mode, metrics = await agent.ask(question, history=windowed)
             wrapped = textwrap.fill(answer, width=_W - 2,
                                     initial_indent="  ", subsequent_indent="  ")
             print(wrapped)
             print(_MODE_BADGE.get(source_mode, ""))
+            _print_metrics(metrics)
             conv_history.append(HumanMessage(content=question))
             conv_history.append(AIMessage(content=answer))
         except Exception as exc:
             answer = f"[Error] {exc}"
             tools_called = []
             source_mode = "error"
+            metrics = {"retrieval": {"status": "error"}, "evaluation": {}}
             print(f"  {answer}")
 
         session_turns.append({
@@ -309,6 +366,7 @@ async def _run_cli() -> None:
             "query": question,
             "tools_called": tools_called,
             "source_mode": source_mode,
+            "metrics": metrics,
             "output": answer,
         })
 

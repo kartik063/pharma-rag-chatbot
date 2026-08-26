@@ -86,17 +86,6 @@ load_dotenv(_PROJECT_ROOT / ".env")
 
 
 # ── Step 3: read configuration from environment ───────────────────────────────
-# OLLAMA_MODEL — the local Ollama model name used for generation tasks in the
-# agent layer (not used by the MCP server itself, stored here as a convenience
-# so the agent layer can import it from this module later).
-# Default: "llama3.2" — a widely available small Ollama model.
-OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3.2")
-
-# OLLAMA_BASE_URL — the HTTP base URL of the running Ollama daemon.
-# Default: "http://localhost:11434" — Ollama's standard local port.
-OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-
-
 # ── Step 4: create the MCPServer instance ────────────────────────────────────
 # MCPServer():
 #   - name:        identifier shown to MCP clients in tool listings
@@ -145,8 +134,6 @@ register_tools(mcp, stores)
 # stdout is reserved exclusively for MCP JSON-RPC messages — any non-JSON
 # text on stdout causes the MCP client to log "Failed to parse JSONRPC message".
 print("\n=== Tools registered -- server ready ===", file=sys.stderr)
-print(f"  Ollama model    : {OLLAMA_MODEL}", file=sys.stderr)
-print(f"  Ollama base URL : {OLLAMA_BASE_URL}", file=sys.stderr)
 print("\nWaiting for MCP client connections on stdin...\n", file=sys.stderr)
 
 

@@ -1,8 +1,11 @@
---- TRIAL: DAPA-RENALSCOPE | Drug: Farxiga (dapagliflozin) ---
-NCT ID: NCT-MOCK-00222
+--- TRIAL: DAPA-HF | Drug: Farxiga (dapagliflozin) ---
+NCT ID: NCT03036124
 PHASE: Phase 3
-CONDITION: Broader renal-stage population, with and without diabetes
-DESIGN: Randomized, double-blind, placebo-controlled, approximately 3,500-patient cohort
-SUMMARY: Tested dapagliflozin across a wider range of renal function stages than typical SGLT2 trials, including patients without a diabetes diagnosis.
-KEY RESULT: Consistent benefit shown across all renal-stage subgroups studied, supporting the drug's broad renal-stage positioning.
-REP TALKING POINT: Key reference point for nephrology conversations, supporting Farxiga's expanded renal-stage positioning relative to Jardiance.
+CONDITION: Heart failure with reduced ejection fraction, with or without type 2 diabetes
+DESIGN: Randomized, double-blind, placebo-controlled trial of 4,744 patients with symptomatic heart failure and left ventricular ejection fraction of 40% or less
+PRIMARY ENDPOINT: Composite of worsening heart failure, defined as hospitalization or an urgent heart failure visit requiring intravenous therapy, or cardiovascular death
+KEY RESULT: The primary endpoint occurred in 16.3% of patients receiving dapagliflozin and 21.2% receiving placebo, corresponding to a 26% relative risk reduction (hazard ratio 0.74; 95% CI 0.65-0.85; P<0.001).
+HEART FAILURE HOSPITALIZATION: Worsening heart failure occurred in 10.0% of dapagliflozin patients versus 13.7% of placebo patients (hazard ratio 0.70; 95% CI 0.59-0.83).
+CARDIOVASCULAR DEATH: Cardiovascular death occurred in 9.6% of dapagliflozin patients versus 11.5% of placebo patients (hazard ratio 0.82; 95% CI 0.69-0.98).
+CONSISTENCY: The benefit on the primary endpoint was consistent in patients with and without type 2 diabetes.
+REP TALKING POINT: DAPA-HF supports discussing dapagliflozin as an add-on therapy for eligible patients with HFrEF, independent of diabetes status.

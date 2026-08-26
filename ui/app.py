@@ -3,9 +3,7 @@ Gradio chat UI for pharma RAG.
 
 Launches a browser-based chat interface that calls PharmaAgent under
 the hood.  Each user message triggers one full ReAct agent loop; the
-final answer is streamed back character-by-character using Gradio's
-generator-based streaming so the UI feels responsive even when Ollama
-is slow.
+final answer is returned through the OpenAI API.
 
 Run with (from project root, venv active):
     python -m ui.app
@@ -54,12 +52,11 @@ import gradio as gr
 #   - does:   on .ask(question), connects to the MCP server, loads tools, runs
 #             the LangGraph ReAct loop, and returns the final answer string
 #   - gives:  a PharmaAgent instance whose .ask() coroutine returns str
-from agent.agent import PharmaAgent, OLLAMA_MODEL, OLLAMA_BASE_URL
+from agent.agent import PharmaAgent, OPENAI_MODEL
 
 
 # ── Environment ───────────────────────────────────────────────────────────────
-# Load .env from the project root so OLLAMA_MODEL and OLLAMA_BASE_URL are
-# available if they were not already set in the shell environment.
+# Load .env from the project root so OpenAI settings are available.
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(_PROJECT_ROOT / ".env")
 
@@ -68,7 +65,7 @@ load_dotenv(_PROJECT_ROOT / ".env")
 # Create one PharmaAgent for the lifetime of the Gradio server.  The MCP server
 # subprocess is spawned fresh per ask() call — no persistent subprocess state
 # is shared between requests, which keeps things simple and predictable.
-_agent = PharmaAgent(model=OLLAMA_MODEL, base_url=OLLAMA_BASE_URL)
+_agent = PharmaAgent(model=OPENAI_MODEL)
 
 
 # ── Chat callback ─────────────────────────────────────────────────────────────
@@ -97,7 +94,28 @@ def _chat(message: str, history: list[list[str]]) -> str:
     # Gradio's default threading model runs callbacks in a thread pool, so
     # asyncio.run() creates a new event loop per call — safe in this context.
     try:
-        answer, _, _ = asyncio.run(_agent.ask(message.strip()))
+        answer, _, _, metrics = asyncio.run(_agent.ask(message.strip()))
+        retrieval = metrics.get("retrieval", {})
+        sources = ", ".join(retrieval.get("sources", [])) or "none"
+        metrics_text = (
+            "\n\n---\n**Metrics**\n"
+            f"- Retrieval: {retrieval.get('status', 'unknown')}  "
+            f"(tool calls: {retrieval.get('tool_calls', 0)}, "
+            f"chunks: {retrieval.get('chunks', 0)})\n"
+            f"- Sources: {sources}\n"
+        )
+        evaluation = metrics.get("evaluation", {})
+        if "error" in evaluation:
+            metrics_text += f"- Evaluation: unavailable ({evaluation['error']})"
+        else:
+            metrics_text += "- Evaluation benchmarks:\n"
+            for collection, values in evaluation.items():
+                metrics_text += (
+                    f"  - {collection}: Hit Rate `{values['hit_rate']:.4f}`, "
+                    f"MRR `{values['mrr']:.4f}`, "
+                    f"Context Precision `{values['context_precision']:.4f}`\n"
+                )
+        answer = f"{answer}{metrics_text}"
     except Exception as exc:
         # Surface the error as a readable message rather than crashing the UI.
         answer = f"Error: {exc}"
@@ -173,9 +191,9 @@ def build_ui() -> gr.Blocks:
         gr.Markdown(
             f"""
             ---
-            **Model:** `{OLLAMA_MODEL}` via Ollama &nbsp;|&nbsp;
+            **Model:** `{OPENAI_MODEL}` via OpenAI &nbsp;|&nbsp;
             **Collections:** drug labels · clinical trials · call notes &nbsp;|&nbsp;
-            **Embeddings:** all-MiniLM-L6-v2
+            **Embeddings:** text-embedding-3-small via OpenAI
             """
         )
 
@@ -186,8 +204,8 @@ def build_ui() -> gr.Blocks:
 
 if __name__ == "__main__":
     print("=== Pharma RAG UI ===")
-    print(f"  Model   : {OLLAMA_MODEL}")
-    print(f"  Ollama  : {OLLAMA_BASE_URL}")
+    print(f"  Model   : {OPENAI_MODEL}")
+    print("  Provider: OpenAI API")
     print("Starting Gradio server...\n")
 
     # build_ui() assembles the Blocks layout; .launch() starts the HTTP server.

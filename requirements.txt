@@ -1,13 +1,11 @@
 langchain
 langchain-community
-langchain-ollama
-langchain-huggingface
+langchain-openai
 langchain-chroma
 chromadb
 gradio
 mcp>=1.24.0,<2.0.0
 langchain-mcp-adapters
-sentence-transformers
 ragas
 requests
 python-dotenv
