@@ -209,7 +209,6 @@ if __name__ == "__main__":
     print("Starting Gradio server...\n")
 
     # build_ui() assembles the Blocks layout; .launch() starts the HTTP server.
-    # share=False — serve only on localhost (change to True to get a public URL).
-    # inbrowser=True — open the browser automatically when the server is ready.
     ui = build_ui()
-    ui.launch(server_name="0.0.0.0", server_port=7860, share=False, inbrowser=True)
+    port = int(os.environ.get("DATABRICKS_APP_PORT", 7860))
+    ui.launch(server_name="0.0.0.0", server_port=port, share=False, inbrowser=False)

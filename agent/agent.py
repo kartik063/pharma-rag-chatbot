@@ -18,7 +18,8 @@ import textwrap
 from datetime import datetime
 from pathlib import Path
 
-from dotenv import load_dotenv
+import base64
+from databricks.sdk import WorkspaceClient
 from langchain_openai import ChatOpenAI
 from langchain.agents import create_agent as create_react_agent
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
@@ -27,7 +28,10 @@ from eval.evaluate import get_all_metrics
 
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
-load_dotenv(_PROJECT_ROOT / ".env")
+if "OPENAI_API_KEY" not in os.environ:
+    _w = WorkspaceClient()
+    _secret = _w.secrets.get_secret(scope="pharma-rag", key="openai-api-key")
+    os.environ["OPENAI_API_KEY"] = base64.b64decode(_secret.value).decode("utf-8")
 
 # --- Config ------------------------------------------------------------------
 

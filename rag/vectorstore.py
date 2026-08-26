@@ -9,7 +9,7 @@ from langchain_chroma import Chroma
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from rag.embeddings import EmbeddingModel
 
-CHROMA_BASE_DIR = Path(__file__).resolve().parent.parent / "chroma_db"
+CHROMA_BASE_DIR = Path("/Volumes/workspace/default/pharma_rag/chroma_db")
 
 
 class VectorStoreManager:

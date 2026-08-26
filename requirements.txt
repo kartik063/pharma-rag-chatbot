@@ -3,6 +3,7 @@ langchain-community
 langchain-openai
 langchain-chroma
 chromadb
+databricks-sdk
 gradio
 mcp>=1.24.0,<2.0.0
 langchain-mcp-adapters
