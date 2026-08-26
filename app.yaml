@@ -1,1 +1,1 @@
-command: ["python", "ui/app.py"]
+command: ["python", "-m", "ui.app"]
