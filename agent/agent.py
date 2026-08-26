@@ -181,7 +181,9 @@ class PharmaAgent:
         retrieved_sources = sorted(set(
             source
             for msg in tool_messages
-            for source in re.findall(r"Source:\s*([^\n]+)", str(msg.content))
+            for source in re.findall(
+                r"Source:\s*([A-Za-z0-9_.-]+\.txt)", str(msg.content)
+            )
         ))
         try:
             evaluation_metrics = get_all_metrics()
