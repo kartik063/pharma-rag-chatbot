@@ -140,6 +140,8 @@ def build_ui() -> gr.Blocks:
             # Pharma RAG Assistant
             Ask anything about **drug labels**, **clinical trials**, or **sales strategy**.
             The agent searches the relevant knowledge base and generates a grounded answer.
+
+            **Brands:** Dupixent, Eliquis, Entresto, Farxiga, Fasenra, Jardiance, Rinvoq, Skyrizi, Trelegy Ellipta, Trulicity, Xarelto
             """
         )
 
@@ -163,6 +165,7 @@ def build_ui() -> gr.Blocks:
                 placeholder="Ask about a drug, trial, or pitch strategy...",
                 label="Your question",
                 lines=2,
+                submit_btn="Send",
             ),
         )
 
