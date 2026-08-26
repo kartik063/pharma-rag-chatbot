@@ -1,0 +1,8 @@
+--- TRIAL: ROCKET-FOODTIMING | Drug: Xarelto (rivaroxaban) ---
+NCT ID: NCT-MOCK-00999
+PHASE: Phase 3
+CONDITION: Atrial fibrillation, absorption sub-study
+DESIGN: Randomized, open-label pharmacokinetic sub-study on food-timing effects
+SUMMARY: Evaluated the absorption profile of rivaroxaban when taken without food, compared to Eliquis's food-independent absorption profile.
+KEY RESULT: Confirmed reduced absorption without food, reinforcing the "one pill, once a day, with food" dosing guidance.
+REP TALKING POINT: Used to proactively address questions about the food-timing requirement when comparing Xarelto to Eliquis.

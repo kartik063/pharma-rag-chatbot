@@ -1,0 +1,10 @@
+--- DOCUMENT: Trulicity (dulaglutide) | Therapeutic Area: Diabetes ---
+BRAND: Trulicity
+GENERIC: dulaglutide
+CLASS: GLP-1 receptor agonist
+INDICATIONS: Once-weekly glycemic control adjunct for adults with type 2 diabetes. Also positioned for patients transitioning off daily-injection regimens.
+DOSAGE: 0.75 mg once weekly; may increase to a 3 mg tier for patients needing additional glycemic buffering.
+WARNINGS: Mild injection-site sensitivity reported more frequently in cold-climate regions. Standard GLP-1 class GI tolerability counseling recommended during initiation.
+COMPARED TO Semaglor: Trulicity offers simpler pen mechanics that are easier for first-time injectors to learn, while Semaglor is generally viewed as having a stronger weight-change profile.
+STRENGTHS: Single-click pen design reduces patient training time by roughly 40% compared to multi-step injection devices.
+WEAKNESSES: Weight-change profile is more modest than newer GLP-1 entrants, which is the most common objection raised by prescribers already familiar with those options.

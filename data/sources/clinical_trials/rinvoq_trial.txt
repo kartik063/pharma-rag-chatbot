@@ -1,0 +1,8 @@
+--- TRIAL: MEASUREUP-RAPIDITCH | Drug: Rinvoq (upadacitinib) ---
+NCT ID: NCT-MOCK-00555
+PHASE: Phase 3
+CONDITION: Rapid-onset itch subtype of atopic dermatitis
+DESIGN: Randomized, double-blind, placebo-controlled, approximately 1,200-patient cohort
+SUMMARY: Evaluated upadacitinib's itch-relief onset speed in a patient population specifically presenting with a rapid-onset itch subtype.
+KEY RESULT: Itch improvement reported as early as Day 2 versus placebo.
+REP TALKING POINT: Central "Day 2 itch relief" claim used to differentiate Rinvoq from Dupixent.

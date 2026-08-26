@@ -1,0 +1,8 @@
+--- TRIAL: SIROCCO-EOSCONFIRM | Drug: Fasenra (benralizumab) ---
+NCT ID: NCT-MOCK-01111
+PHASE: Phase 3
+CONDITION: High-eosinophil severe asthma subtype
+DESIGN: Randomized, double-blind, placebo-controlled, approximately 1,000-patient cohort requiring eosinophil confirmation testing for enrollment
+SUMMARY: Evaluated benralizumab in patients confirmed via eosinophil testing, comparing dosing frequency against Trelegy Ellipta in a sub-analysis.
+KEY RESULT: "Fewest annual doses in class" result confirmed in the sub-analysis, alongside the added confirmation-testing requirement.
+REP TALKING POINT: Supports the "fewest annual doses" claim while acknowledging the added testing step versus Trelegy Ellipta.

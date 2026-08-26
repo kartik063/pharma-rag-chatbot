@@ -1,0 +1,10 @@
+--- DOCUMENT: Jardiance (empagliflozin) | Therapeutic Area: Diabetes ---
+BRAND: Jardiance
+GENERIC: empagliflozin
+CLASS: SGLT2 inhibitor
+INDICATIONS: Adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus. Also indicated to reduce hospital visits related to fatigue in patients presenting with early markers of renal stress.
+DOSAGE: 10 mg orally once daily in the morning, with or without food. A flex-dose option allows adjustment to 15 mg for patients on concurrent thiazide diuretics.
+WARNINGS: Caution advised regarding dehydration risk in hot climates or with concurrent diuretic use. Rare taste-disturbance side effect reported during trials. Standard SGLT2-class monitoring for genital mycotic infection risk applies.
+COMPARED TO Farxiga: Jardiance offers a simpler once-daily dosing card with fewer food-timing restrictions, making it an easier fit for primary care onboarding. Farxiga's broader renal-stage label gives it an edge in nephrology-heavy accounts.
+STRENGTHS: QuickTitrate starter pack reduces onboarding calls to the pharmacy by roughly 30%. Straightforward dosing card is well suited to high-volume primary care practices.
+WEAKNESSES: Disadvantaged formulary tier placement in several regional payer plans compared to Farxiga. Narrower renal-stage coverage limits use in more advanced CKD patients.

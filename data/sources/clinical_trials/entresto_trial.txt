@@ -1,0 +1,8 @@
+--- TRIAL: PARADIGM-RECOVERPHASE | Drug: Entresto (sacubitril/valsartan) ---
+NCT ID: NCT-MOCK-00777
+PHASE: Phase 3
+CONDITION: Post-recovery maintenance phase of chronic heart failure
+DESIGN: Randomized, double-blind, active-controlled versus Cardiphex
+SUMMARY: Compared sacubitril/valsartan to Cardiphex specifically in a post-recovery maintenance patient population.
+KEY RESULT: Substantial reduction in a composite hospitalization endpoint versus Cardiphex.
+REP TALKING POINT: Central "landmark outcomes" data point used when positioning Entresto against Cardiphex.

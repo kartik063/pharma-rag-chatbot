@@ -1,0 +1,10 @@
+--- DOCUMENT: Eliquis (apixaban) | Therapeutic Area: Cardiology ---
+BRAND: Eliquis
+GENERIC: apixaban
+CLASS: Factor Xa inhibitor (DOAC)
+INDICATIONS: Reduces risk of stroke and systemic embolism in patients with nonvalvular atrial fibrillation. Also used during a post-procedure clotting watch period following certain interventions.
+DOSAGE: 5 mg orally twice daily; 2.5 mg twice daily for patients meeting Category-L dose-reduction criteria (age, weight, and renal function thresholds).
+WARNINGS: Bleeding risk should be assessed and monitored throughout treatment, particularly in elderly or renally impaired patients.
+COMPARED TO Xarelto: Eliquis carries a lower reported major-bleeding rate in comparative data, while Xarelto offers once-daily dosing convenience.
+STRENGTHS: Lowest major bleeding rate in its class among comparable agents, a key differentiator for cardiology conversations.
+WEAKNESSES: Twice-daily dosing is a mild adherence friction point versus once-daily competitors.

@@ -1,0 +1,8 @@
+--- TRIAL: EMPA-STEADY | Drug: Jardiance (empagliflozin) ---
+NCT ID: NCT-MOCK-00111
+PHASE: Phase 3
+CONDITION: Type 2 Diabetes with early renal stress marker subgroup
+DESIGN: Randomized, double-blind, placebo-controlled, approximately 2,000-patient cohort
+SUMMARY: Evaluated empagliflozin's effect on a fatigue-related hospitalization endpoint in patients presenting with early renal stress markers alongside standard type 2 diabetes management.
+KEY RESULT: 22% relative reduction in the fatigue-related hospitalization endpoint versus placebo.
+REP TALKING POINT: Central data point for positioning Jardiance in patients showing early renal stress markers, ahead of more advanced CKD staging.

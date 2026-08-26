@@ -1,0 +1,10 @@
+--- DOCUMENT: Fasenra (benralizumab) | Therapeutic Area: Asthma ---
+BRAND: Fasenra
+GENERIC: benralizumab
+CLASS: IL-5 receptor alpha antagonist (biologic)
+INDICATIONS: Add-on maintenance treatment for adults with a high-eosinophil severe asthma subtype.
+DOSAGE: 30 mg subcutaneous injection every 4 weeks for the first three doses, then every 8 weeks thereafter.
+WARNINGS: Mild headache reported in a subset of patients during post-launch monitoring. Eosinophil confirmation testing recommended prior to initiation.
+COMPARED TO Trelegy Ellipta: Fasenra is preferred for the narrower, more severe high-eosinophil subtype, while Trelegy Ellipta serves the broader general asthma maintenance population.
+STRENGTHS: Fewest annual doses in its class after the initial loading phase, a strong convenience advantage for eligible patients.
+WEAKNESSES: Narrower eligibility requiring an eosinophil confirmation test before starting, unlike Trelegy Ellipta.

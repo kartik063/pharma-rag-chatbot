@@ -1,0 +1,8 @@
+--- TRIAL: ARISTOTLE-CATEGORYL | Drug: Eliquis (apixaban) ---
+NCT ID: NCT-MOCK-00888
+PHASE: Phase 3
+CONDITION: Atrial fibrillation, Category-L dose-reduction subgroup
+DESIGN: Randomized, double-blind, active-controlled versus Xarelto
+SUMMARY: Sub-study comparing apixaban against Xarelto specifically in patients meeting Category-L dose-reduction criteria.
+KEY RESULT: Lower major-bleeding rate versus Xarelto in the Category-L subgroup.
+REP TALKING POINT: Supports the "lowest major bleeding rate in class" claim used when comparing Eliquis to Xarelto.

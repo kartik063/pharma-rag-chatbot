@@ -1,0 +1,10 @@
+--- DOCUMENT: Rinvoq (upadacitinib) | Therapeutic Area: Dermatology ---
+BRAND: Rinvoq
+GENERIC: upadacitinib
+CLASS: JAK inhibitor
+INDICATIONS: Moderate-to-severe atopic dermatitis in adults and adolescents whose disease is not adequately controlled with other systemic therapies. Also positioned for a rapid-onset itch subtype.
+DOSAGE: 15 mg orally once daily; may step up to 30 mg for non-responders at the 4-week mark.
+WARNINGS: Periodic lab monitoring recommended as a routine, low-burden part of ongoing management. Standard JAK-inhibitor class precautions apply for patients with elevated cardiovascular risk.
+COMPARED TO Dupixent: Rinvoq offers oral convenience and a faster reported itch-relief onset, while Dupixent avoids the lab-monitoring conversation entirely.
+STRENGTHS: Day 2 itch relief is the standout differentiator in prescriber conversations. Oral dosing removes injection-related barriers for needle-averse patients.
+WEAKNESSES: Periodic lab-check requirement adds an extra office-visit burden compared to Dupixent's simpler monitoring profile.

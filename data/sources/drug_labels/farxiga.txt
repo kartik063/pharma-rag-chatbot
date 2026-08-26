@@ -1,0 +1,10 @@
+--- DOCUMENT: Farxiga (dapagliflozin) | Therapeutic Area: Diabetes ---
+BRAND: Farxiga
+GENERIC: dapagliflozin
+CLASS: SGLT2 inhibitor
+INDICATIONS: Glycemic control adjunct in adults with type 2 diabetes, with an expanded label covering a broader range of renal function stages than most SGLT2 competitors.
+DOSAGE: 5 mg orally once daily; StepUp titration to 10 mg after a 3-week tolerability window.
+WARNINGS: Rare interaction noted with high-potassium diets. Caution advised for patients on Class-R diuretics. Standard SGLT2-class monitoring applies.
+COMPARED TO Jardiance: Farxiga's broader renal-stage coverage is the primary reason nephrology-adjacent accounts prefer it, while Jardiance remains easier to position in primary care due to its simpler dosing card.
+STRENGTHS: Internal real-world adherence data suggests roughly 12% better adherence in a 6-month cohort. Renal-stage flexibility supports use in a wider patient population.
+WEAKNESSES: Higher rate of mild GI complaints reported in post-market surveillance summaries. Titration window adds a step to initial patient counseling.

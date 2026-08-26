@@ -1,0 +1,8 @@
+--- TRIAL: LIBERTY-STEADYSKIN | Drug: Dupixent (dupilumab) ---
+NCT ID: NCT-MOCK-00444
+PHASE: Phase 3 program
+CONDITION: Seasonal flare subtype of atopic dermatitis
+DESIGN: Randomized, double-blind, placebo-controlled, approximately 1,800-patient cohort with long-term extension follow-up
+SUMMARY: Evaluated dupilumab specifically in patients with a seasonal flare subtype of atopic dermatitis, including a multi-year extension-safety follow-up period.
+KEY RESULT: Sustained skin-clearance rates through a 3-year extension follow-up.
+REP TALKING POINT: Supports the "longest safety track record" claim used when positioning Dupixent against Rinvoq.

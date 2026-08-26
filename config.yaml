@@ -1,0 +1,5 @@
+agent:
+  # Number of prior conversation turns to include as context on each new question.
+  # One "turn" = one user question + one agent answer.
+  # Increase for longer multi-turn conversations; decrease to save LLM context window.
+  history_window: 3

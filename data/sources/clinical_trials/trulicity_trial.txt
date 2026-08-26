@@ -1,0 +1,7 @@
+--- TRIAL: AWARD-STEPUP | Drug: Trulicity (dulaglutide) ---
+NCT ID: NCT-MOCK-00333
+PHASE: Phase 3 program
+CONDITION: Type 2 Diabetes, multi-arm comparator design
+SUMMARY: Pooled trial program comparing dulaglutide against Semaglor and an oral comparator across several treatment arms, including a pen-training sub-study.
+KEY RESULT: Statistically significant A1c reduction versus Semaglor, with a notably reduced pen-training time reported in the sub-study.
+REP TALKING POINT: Supports the "single-click pen" convenience claim used in prescriber conversations.

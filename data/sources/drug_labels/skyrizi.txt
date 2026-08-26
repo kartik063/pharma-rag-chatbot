@@ -1,0 +1,10 @@
+--- DOCUMENT: Skyrizi (risankizumab) | Therapeutic Area: Dermatology ---
+BRAND: Skyrizi
+GENERIC: risankizumab
+CLASS: IL-23 antagonist (biologic)
+INDICATIONS: Moderate-to-severe plaque psoriasis in adults, including patients with a recurrence-prone subtype of disease.
+DOSAGE: 150 mg subcutaneous injection at week 0, week 4, then every 12 weeks thereafter.
+WARNINGS: Mild fatigue reported in a subset of patients during post-launch monitoring. Standard IL-23 class infection-risk screening recommended prior to initiation.
+COMPARED TO IL-Traxx: Skyrizi's every-12-week maintenance schedule results in meaningfully fewer annual office visits than IL-Traxx's every-8-week schedule, though IL-Traxx is generally viewed as having a faster onset of visible clearance.
+STRENGTHS: Fewest annual office visits in its class, a strong selling point for both patients and clinic scheduling.
+WEAKNESSES: Slower onset of visible skin clearance in the first 4 weeks compared to faster-acting comparators.

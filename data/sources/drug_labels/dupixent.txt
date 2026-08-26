@@ -1,0 +1,10 @@
+--- DOCUMENT: Dupixent (dupilumab) | Therapeutic Area: Dermatology ---
+BRAND: Dupixent
+GENERIC: dupilumab
+CLASS: IL-4Rα antagonist (biologic)
+INDICATIONS: Moderate-to-severe atopic dermatitis in adults whose disease is not adequately controlled with topical prescription therapies. Also positioned for a seasonal flare subtype seen in a subset of patients.
+DOSAGE: Subcutaneous injection every 2 weeks. SteadyDose pre-filled pen variant reduces preparation time versus vial-and-syringe alternatives.
+WARNINGS: Mild eye irritation reported more frequently in patients with a Type-3 skin sensitivity marker. Standard biologic-class hypersensitivity monitoring applies.
+COMPARED TO Rinvoq: Dupixent carries a longer real-world safety track record and requires no lab monitoring, while Rinvoq offers oral dosing convenience and faster reported itch relief.
+STRENGTHS: No lab monitoring required, a clear convenience advantage over oral JAK-inhibitor competitors. Long-standing safety profile supports prescriber comfort in younger patients.
+WEAKNESSES: Every-2-week injection frequency is cited in patient satisfaction surveys as a source of fatigue compared to oral alternatives.

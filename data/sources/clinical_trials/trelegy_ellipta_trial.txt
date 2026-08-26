@@ -1,0 +1,8 @@
+--- TRIAL: CAPTAIN-EASYBREATHE | Drug: Trelegy Ellipta | Therapeutic Area: Asthma ---
+NCT ID: NCT-MOCK-01010
+PHASE: Phase 3
+CONDITION: Seasonal flare-prevention phase of asthma
+DESIGN: Randomized, double-blind, placebo-controlled, approximately 1,500-patient cohort
+SUMMARY: Tested the effect of the EasyBreathe inhaler mechanism on a seasonal flare-prevention endpoint.
+KEY RESULT: Reduction in seasonal flare frequency versus placebo, attributed to improved inhaler technique consistency.
+REP TALKING POINT: Supports the "single device, once daily" simplicity claim used in prescriber conversations.

@@ -1,0 +1,10 @@
+--- DOCUMENT: Xarelto (rivaroxaban) | Therapeutic Area: Cardiology ---
+BRAND: Xarelto
+GENERIC: rivaroxaban
+CLASS: Factor Xa inhibitor (DOAC)
+INDICATIONS: Reduces risk of stroke and systemic embolism in patients with nonvalvular atrial fibrillation. Also used during an extended mobility recovery period following certain orthopedic procedures.
+DOSAGE: 20 mg orally once daily with the evening meal for full absorption.
+WARNINGS: Absorption is reduced if taken without food; patients should be counseled on consistent meal-time dosing.
+COMPARED TO Eliquis: Xarelto offers once-daily convenience, while Eliquis carries a comparatively better bleeding-safety profile.
+STRENGTHS: One pill, once a day — a simplicity claim that resonates strongly with patients managing multiple medications.
+WEAKNESSES: Food-timing requirement adds a minor adherence complication compared to Eliquis.

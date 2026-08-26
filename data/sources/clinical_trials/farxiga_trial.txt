@@ -1,0 +1,8 @@
+--- TRIAL: DAPA-RENALSCOPE | Drug: Farxiga (dapagliflozin) ---
+NCT ID: NCT-MOCK-00222
+PHASE: Phase 3
+CONDITION: Broader renal-stage population, with and without diabetes
+DESIGN: Randomized, double-blind, placebo-controlled, approximately 3,500-patient cohort
+SUMMARY: Tested dapagliflozin across a wider range of renal function stages than typical SGLT2 trials, including patients without a diabetes diagnosis.
+KEY RESULT: Consistent benefit shown across all renal-stage subgroups studied, supporting the drug's broad renal-stage positioning.
+REP TALKING POINT: Key reference point for nephrology conversations, supporting Farxiga's expanded renal-stage positioning relative to Jardiance.

@@ -1,0 +1,8 @@
+--- TRIAL: ULTIMMA-LESSVISITS | Drug: Skyrizi (risankizumab) ---
+NCT ID: NCT-MOCK-00666
+PHASE: Phase 3
+CONDITION: Recurrence-prone subtype of plaque psoriasis
+DESIGN: Randomized, double-blind, active-controlled versus IL-Traxx
+SUMMARY: Compared risankizumab to IL-Traxx on an annual office-visit-count endpoint tied to dosing frequency.
+KEY RESULT: Statistically significant reduction in annual office-visit count versus IL-Traxx, attributed to the every-12-week dosing schedule.
+REP TALKING POINT: Supports the "fewest annual office visits in class" claim used in prescriber conversations.

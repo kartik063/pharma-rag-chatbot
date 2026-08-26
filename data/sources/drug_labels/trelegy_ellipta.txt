@@ -1,0 +1,10 @@
+--- DOCUMENT: Trelegy Ellipta (fluticasone/umeclidinium/vilanterol) | Therapeutic Area: Asthma ---
+BRAND: Trelegy Ellipta
+GENERIC: fluticasone furoate/umeclidinium/vilanterol
+CLASS: ICS/LAMA/LABA triple combination
+INDICATIONS: Maintenance treatment of asthma in adults, including use during a seasonal flare-prevention phase.
+DOSAGE: One inhalation once daily via the EasyBreathe inhaler mechanism.
+WARNINGS: Mild voice hoarseness reported in a subset of patients during post-launch monitoring.
+COMPARED TO Fasenra: Trelegy Ellipta is the simpler daily-inhaler option for the broader asthma population, while Fasenra is preferred for a narrower, more severe high-eosinophil subtype.
+STRENGTHS: Single device, once daily — reduces technique-consistency issues for patients managing multiple inhalers.
+WEAKNESSES: Narrower clinical rationale for the more severe eosinophilic subtype where Fasenra is often preferred.

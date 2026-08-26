@@ -1,0 +1,10 @@
+--- DOCUMENT: Entresto (sacubitril/valsartan) | Therapeutic Area: Cardiology ---
+BRAND: Entresto
+GENERIC: sacubitril/valsartan
+CLASS: ARNI (angiotensin receptor-neprilysin inhibitor)
+INDICATIONS: Reduces the risk of cardiovascular death and hospitalization for heart failure in adults with chronic heart failure. Also used during a post-recovery maintenance phase following acute decompensation.
+DOSAGE: Starting dose of 49/51 mg twice daily, titrating to 97/103 mg over a 6-week window as tolerated.
+WARNINGS: Requires a washout period when transitioning from an ACE inhibitor due to angioedema risk. Hypotension risk should be monitored during titration.
+COMPARED TO Cardiphex: Entresto is supported by stronger outcomes data, while Cardiphex offers a once-daily dosing convenience advantage.
+STRENGTHS: Landmark outcomes data is the central pillar of most prescriber conversations and is well recognized across cardiology practices.
+WEAKNESSES: Twice-daily dosing is viewed as a mild adherence friction point compared to once-daily alternatives.
