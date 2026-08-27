@@ -1,8 +1,8 @@
 # pharma-rag-mcp
 
-A **Retrieval-Augmented Generation (RAG)** system for pharmaceutical sales intelligence — built with LangChain, ChromaDB, OpenAI, and the Model Context Protocol (MCP).
+A **Retrieval-Augmented Generation (RAG)** system for pharmaceutical sales intelligence — built with LangChain, LangGraph, ChromaDB, OpenAI, and the Model Context Protocol (MCP).
 
-The system ingests drug labels, clinical trial documents, and sales call notes into a local vector database, exposes them as MCP tools, and answers natural-language questions through a LangGraph ReAct agent backed by a locally-running LLM.
+The system ingests drug labels, clinical trial documents, and sales call notes into ChromaDB, exposes retrieval functions as MCP tools, and answers natural-language questions through a LangGraph-backed ReAct agent created with LangChain.
 
 ---
 
@@ -15,7 +15,7 @@ data/sources/          ← raw .txt files (drug labels, trials, call notes)
 data/ingest.py         ← loads, splits into chunks, embeds with OpenAI
       │
       ▼
-chroma_db/             ← persisted ChromaDB collections (384-dim vectors)
+chroma_db/             ← persisted ChromaDB collections (OpenAI embeddings)
   ├── drug_info/
   ├── competitor_intel/
   └── pitch_content/
@@ -24,10 +24,42 @@ chroma_db/             ← persisted ChromaDB collections (384-dim vectors)
 mcp_server/server.py   ← MCP server over stdio — exposes 4 retrieval tools
       │   (MCP JSON-RPC)
       ▼
-agent/agent.py         ← LangGraph ReAct agent (ChatOpenAI + MCP tools)
+agent/agent.py         ← LangChain agent API creates the LangGraph ReAct workflow
       │
       ▼
 ui/app.py              ← Gradio chat interface (browser)
+```
+
+### Framework responsibilities
+
+| Component | Role in this project |
+|---|---|
+| **LangChain** | Provides `ChatOpenAI`, `OpenAIEmbeddings`, Chroma integration, document loaders, text splitters, message types, and the MCP client adapter. |
+| **LangGraph** | Provides the agent orchestration behind `langchain.agents.create_agent`: the ReAct loop decides when to call retrieval tools and when to produce the final answer. The project does not directly instantiate `StateGraph`; LangChain creates and manages the graph. |
+| **MCP** | Provides the retrieval transport. `mcp_server/server.py` starts the stdio server and `mcp_server/tools.py` exposes `search_drug_info`, `search_competitor_intel`, `search_pitch_content`, and `search_all`. |
+| **OpenAI** | Supplies the chat model and the `text-embedding-3-small` embedding model through LangChain integrations. |
+| **ChromaDB** | Persists document embeddings and performs similarity search. |
+| **Gradio** | Provides the browser-based chat interface. |
+| **Databricks SDK** | Retrieves the OpenAI API key from Databricks Secrets when `OPENAI_API_KEY` is not already set. |
+
+### Request flow
+
+```text
+Gradio UI or CLI
+      │
+      ▼
+PharmaAgent (LangChain API)
+      │
+      ▼
+LangGraph ReAct workflow
+      │
+      ├── OpenAI ChatOpenAI
+      ├── MCP client ── stdio ── MCP retrieval server
+      │                         │
+      │                         ▼
+      │                    ChromaDB
+      │
+      └── final answer and retrieval/evaluation metrics
 ```
 
 **Supporting modules**
@@ -92,7 +124,8 @@ python -m data.run_ingest
 ## Running the System
 
 Each layer can be used independently. Internet access and a valid OpenAI API key
-are required when using the agent or UI.
+are required when using the agent or UI. The MCP server is launched automatically
+by `PharmaAgent`; it does not need to be started separately for normal use.
 
 ### Agent (CLI)
 
@@ -141,6 +174,8 @@ python -m mcp_server.server
 ```
 
 Loads the three ChromaDB collections and waits for MCP JSON-RPC messages on stdin.
+This command is useful for testing the retrieval server directly. The CLI and UI
+start it automatically through `MultiServerMCPClient`.
 
 **Registered tools:**
 
@@ -223,6 +258,8 @@ pharma-rag-mcp/
 ---
 
 ## Key Design Decisions
+
+**LangChain and LangGraph** — LangChain supplies the models, embeddings, document/vector-store integrations, messages, and MCP adapter. Its `create_agent` API creates the LangGraph ReAct workflow that orchestrates tool calls and answer generation.
 
 **OpenAI generation and embeddings** — model responses and vector embeddings use the OpenAI API, with vectors stored locally in ChromaDB.
 
